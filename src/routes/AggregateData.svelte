@@ -3,5 +3,5 @@
 </script>
 
 <div>
-    <h1>Much Data, wow!</h1>
+    <h1>Much Data, such wow!</h1>
 </div>

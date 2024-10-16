@@ -1,6 +1,8 @@
 <!-- Thomas McCoy -->
 
 <script>
+  import { Link } from 'svelte-routing';
+
   let lightLevel = 1000;
   let plantDesiredLight = 1000;
   let minPlantLight = Math.round(plantDesiredLight * 0.9);
@@ -46,50 +48,81 @@
   }
 </script>
 
+<div>
+  <h1>Light level</h1>
+  <!-- Button to go back to Main Page -->
+  <button>
+    <Link to="/">Back to Main Page</Link>
+  </button>
 
-<body>
   <div>
-    <br/>
-    <h1>Light level</h1>
-    <br/>
     <p>Current light level: {lightLevel} lux</p>
+
     <div id="lightLevel">
       {#if changeDesiredLight == false}
         <p>Desired light level: {plantDesiredLight} lux</p>
       {:else}
-        <p>Desired light level: </p>
-        <input type="number" min="0" max="10000" bind:value={plantDesiredLight}>
+        <p>Desired light level:</p>
+        <input type="number" min="0" max="10000" bind:value={plantDesiredLight} />
         <p> lux</p>
       {/if}
-      <button id="update" on:click={updateDesiredLight}> {changeDesiredLightButtonLabel}</button>
+      <button id="update" on:click={updateDesiredLight}>
+        {changeDesiredLightButtonLabel}
+      </button>
     </div>
-    <br/>
-    <svg width="500" height="90">    
-      <rect width="167" height="10" fill="red" stroke-width="1"/>
-      <rect width="167" height="10" fill="green" stroke-width="1" x="167"/>
-      <rect width="167" height="10" fill="red" stroke-width="1" x="334"/>
-      <text x=55 y=30> &lt {minPlantLight}</text>
-      <text x=215 y=30> {minPlantLight} - {maxPlantLight}</text>
-      <text x=385 y=30> &gt {maxPlantLight}</text>
+
+    <br />
+
+    <svg width="500" height="90">
+      <rect width="167" height="10" fill="red" stroke-width="1" />
+      <rect width="167" height="10" fill="green" stroke-width="1" x="167" />
+      <rect width="167" height="10" fill="red" stroke-width="1" x="334" />
+      <text x="55" y="30">&lt {minPlantLight}</text>
+      <text x="215" y="30">{minPlantLight} - {maxPlantLight}</text>
+      <text x="385" y="30">&gt {maxPlantLight}</text>
+
       {#if lightLevel < minPlantLight}
-        <circle cx="83.5" cy="50" r="10" fill="red"/>
-        <circle cx="250" cy="50" r="10"/>
-        <circle cx="417.5" cy="50" r="10"/>
+        <circle cx="83.5" cy="50" r="10" fill="red" />
+        <circle cx="250" cy="50" r="10" />
+        <circle cx="417.5" cy="50" r="10" />
       {:else if lightLevel > maxPlantLight}
-        <circle cx="83.5" cy="50" r="10"/>
-        <circle cx="250" cy="50" r="10"/>
-        <circle cx="417.5" cy="50" r="10" fill="red"/>
+        <circle cx="83.5" cy="50" r="10" />
+        <circle cx="250" cy="50" r="10" />
+        <circle cx="417.5" cy="50" r="10" fill="red" />
       {:else}
-        <circle cx="83.5" cy="50" r="10"/>
-        <circle cx="250" cy="50" r="10" fill="red"/>
-        <circle cx="417.5" cy="50" r="10"/>
+        <circle cx="83.5" cy="50" r="10" />
+        <circle cx="250" cy="50" r="10" fill="red" />
+        <circle cx="417.5" cy="50" r="10" />
       {/if}
     </svg>
   </div>
+
   <div>
-    <button on:click={randomLightLevel}> Move plant to different room with random lighting</button>
-    <button on:click={brighterRoom}> Move the plant to a brighter room</button>
-    <button on:click={dimmerRoom}> Move the plant to a dimmer room</button>
-    <button on:click={info}> Info</button>
+    <button on:click={randomLightLevel}>
+      Move plant to different room with random lighting
+    </button>
+    <button on:click={brighterRoom}>Move the plant to a brighter room</button>
+    <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
+    <button on:click={info}>Info</button>
   </div>
-</body>
+</div>
+
+<style>
+  button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  svg {
+    margin: 10px 0;
+  }
+</style>
