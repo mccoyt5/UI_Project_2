@@ -30,9 +30,15 @@ body {
   min-height: 100vh;
 }
 
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+  font-size: 1.8em;
+  font-style: italic;
+  position: relative;
+  top: 10%;
+
+
 }
 
 .card {
