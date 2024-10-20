@@ -2,6 +2,7 @@
 
 <script>
   import { Link } from 'svelte-routing';
+  import { lightData } from '../light-data';
 
   let lightLevel = 1000;
   let plantDesiredLight = 1000;
@@ -41,6 +42,12 @@
 
   function dimmerRoom() {
     lightLevel -= 100;
+  }
+
+  function trackNewDay() {
+    $lightData.push(lightLevel);
+    $lightData.shift();
+    $lightData = $lightData;
   }
 
   function info() {
@@ -103,6 +110,7 @@
     </button>
     <button on:click={brighterRoom}>Move the plant to a brighter room</button>
     <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
+    <button on:click={trackNewDay}>Add a new entry for a day</button>
     <button on:click={info}>Info</button>
   </div>
 </div>
