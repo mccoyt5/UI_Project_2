@@ -1,6 +1,6 @@
 <script>
   import { Link } from 'svelte-routing';
-  import { lightData } from '../light-data';
+  import { lightData } from '../data';
   import { onMount } from 'svelte';
   import { Chart } from 'chart.js/auto';
   
