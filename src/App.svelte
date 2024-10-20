@@ -21,6 +21,9 @@
         <button>
           <Link to="/water-level">Go to Water Level Page</Link>
         </button>
+        <button>
+          <Link to="/water-level">Plant Status</Link>
+        </button>
       </div>
     </Route>
 
