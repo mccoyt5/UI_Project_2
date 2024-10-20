@@ -1,6 +1,6 @@
 <script>
   import { Link } from 'svelte-routing';
-  import { lightData } from '../light-data';
+  import { lightData } from '../data';
 
   let lightLevel = 1000;
   let plantDesiredLight = 1000;
