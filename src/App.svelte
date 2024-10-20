@@ -39,7 +39,6 @@
             <Link to="/water-level">Go to Water Level Page</Link>
           </button>
         </div>
-
         <!-- temp button -->
         <button>
             <Link to="/light-data">Go to Light Data Page</Link>
