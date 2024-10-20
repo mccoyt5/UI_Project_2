@@ -3,6 +3,7 @@
   import LightLevel from './routes/LightLevel.svelte';
   import NutrientsLevel from './routes/NutrientsLevel.svelte';
   import WaterLevel from './routes/WaterLevel.svelte';
+  import LightData from './routes/LightData.svelte';
 
   let showMenu = false;
 
@@ -38,12 +39,18 @@
             <Link to="/water-level">Go to Water Level Page</Link>
           </button>
         </div>
+        <!-- temp button -->
+        <button>
+            <Link to="/light-data">Go to Light Data Page</Link>
+        </button>
+        <!-- -->
       </Route>
 
       <!-- Routes for other pages -->
       <Route path="light-level" component={LightLevel} />
       <Route path="nutrients-level" component={NutrientsLevel} />
       <Route path="water-level" component={WaterLevel} />
+      <Route path="light-data" component={LightData} />
     </Router>
 
     <!-- Settings button at the top right -->
