@@ -1,5 +1,3 @@
-<!-- Thomas McCoy -->
-
 <script>
   import { Link } from 'svelte-routing';
   import { lightData } from '../light-data';
@@ -14,11 +12,6 @@
   $: if (plantDesiredLight < 0) plantDesiredLight = 0;
   $: if (plantDesiredLight > 10000) plantDesiredLight = 10000;
   $: if (typeof plantDesiredLight != "number") plantDesiredLight = 0;
-  /*function randomLightGoal() {
-    plantDesiredLight = Math.random() * (3000 - 100) + 100;
-    minPlantLight = Math.round(plantDesiredLight * 0.9);
-    maxPlantLight = Math.round(plantDesiredLight * 1.1);
-  }*/
 
   function updateDesiredLight() {
     changeDesiredLight = !changeDesiredLight;
