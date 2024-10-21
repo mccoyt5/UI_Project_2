@@ -10,6 +10,7 @@
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
   import info from './assets/info.svg';
   import {lightData, nutrientData, waterData} from './data';
+    import AggregateDetails from './routes/AggregateDetails.svelte';
 
   let showMenu = false;
   let showContainer = false;
@@ -38,8 +39,8 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
-          <Notification icon={info} url="/light-level" hasNotification={badLightLevel}>
-            <p slot="message">Test!</p>  
+          <Notification icon={info} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
+            <p slot="message">Your plant needs attention!</p>  
           </Notification>
 
           <!-- Light button at the top -->
@@ -84,6 +85,7 @@
         <Route path="nutrients-level" component={NutrientsLevel} />
         <Route path="water-level" component={WaterLevel} />
         <Route path="light-data" component={LightData} />
+        <Route path="aggregate-details" component={AggregateDetails} />
       </Router>
 
       <!-- Settings button at the top right -->
@@ -104,7 +106,8 @@
 
 <style>
 
-.container { 
+.container {
+  position: relative;
   display: flex;
   flex-direction: column; /* Stack elements vertically */
   width: 60%;

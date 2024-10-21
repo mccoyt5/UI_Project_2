@@ -3,6 +3,7 @@
   import { fly } from "svelte/transition";
   export let url;
   export let icon;
+  export let backgroundColor;
   export let hasNotification = false;
   const dismiss_notification = () => (hasNotification = false);
 </script>
@@ -12,6 +13,7 @@
     in:fly={{ x: -25, duration: 1000 }}
     out:fly={{ x: -10, duration: 1000 }}
     class="notification-container"
+    style="--bColor: {backgroundColor}"
   >
     <Link to={url}>
       <div class="notification-content-container">
@@ -30,11 +32,12 @@
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 3%;
-    left: 1%;
+    top: 1%;
+    left: 0%;
     border: 2px solid black;
+    border-radius: 0%;
     padding: 0px 10px 0px 1px;
-    background-color: #7c7c7c;
+    background-color: var(--bColor);
   }
 
   .notification-content-container {
