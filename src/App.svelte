@@ -12,6 +12,9 @@
   import { lightLevel } from './data';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
+  import { randomLightLevel } from './routes/LightLevel.svelte';
+  import { brighterRoom } from './routes/LightLevel.svelte';
+  import { dimmerRoom } from './routes/LightLevel.svelte';
 
   let showMenu = false;
   let showContainer = false;
@@ -24,24 +27,6 @@
 
   function toggleMenu() {
     showMenu = !showMenu;
-  }
-
-  function randomLightLevel() {
-    $lightLevel = Math.floor(Math.random() * (10000 - 1) + 1);
-  }
-
-  function brighterRoom() {
-    $lightLevel += 100;
-    if ($lightLevel > 10000) {
-      $lightLevel = 10000;
-    }
-  }
-
-  function dimmerRoom() {
-    $lightLevel -= 100;
-    if ($lightLevel < 0) {
-      $lightLevel = 0;
-    }
   }
 
   function trackNewDay() {

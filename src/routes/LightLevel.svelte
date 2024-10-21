@@ -25,6 +25,24 @@
       maxPlantLight = Math.round(plantDesiredLight * 1.1);
     }
   }
+
+  export function randomLightLevel() {
+    $lightLevel = Math.floor(Math.random() * (10000 - 1) + 1);
+  }
+
+  export function brighterRoom() {
+    $lightLevel += 100;
+    if ($lightLevel > 10000) {
+      $lightLevel = 10000;
+    }
+  }
+
+  export function dimmerRoom() {
+    $lightLevel -= 100;
+    if ($lightLevel < 0) {
+      $lightLevel = 0;
+    }
+  }
 </script>
 
 <div>
