@@ -1,7 +1,7 @@
 <script>
   import { Link } from 'svelte-routing';
   import { lightData } from '../data';
-  import { lightLevel } from '../utils';
+  import {lightLevel} from '../utils';
   import { lightAbsoluteMin, lightAbsoluteMax, plantDesiredLight} from '../data';
 
   let maxPlantLight = Math.round($plantDesiredLight * 1.1);
