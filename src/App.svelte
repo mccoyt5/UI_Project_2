@@ -4,14 +4,23 @@
   import NutrientsLevel from './routes/NutrientsLevel.svelte';
   import WaterLevel from './routes/WaterLevel.svelte';
   import LightData from './routes/LightData.svelte';
+  import Notification from './components/Notification.svelte';
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
   import { lightData } from './data'
   import { lightLevel } from './data';
+  import infoIcon from './assets/info.svg';
+  import AggregateDetails from './routes/AggregateDetails.svelte';
 
   let showMenu = false;
   let showContainer = false;
+  
+  // condition for light level
+  let badLightLevel = false
+  setTimeout(() => {
+    badLightLevel = true
+  }, 5000);
 
   function toggleMenu() {
     showMenu = !showMenu;
@@ -60,6 +69,9 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
+          <Notification icon={infoIcon} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
+            <p slot="message">Your plant needs attention!</p>  
+          </Notification>
 
           <!-- Light button at the top -->
           <div class="top-section">
@@ -98,6 +110,7 @@
         <Route path="nutrients-level" component={NutrientsLevel} />
         <Route path="water-level" component={WaterLevel} />
         <Route path="light-data" component={LightData} />
+        <Route path="aggregate-details" component={AggregateDetails} />
       </Router>
 
       <!-- Settings button at the top right -->
