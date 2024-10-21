@@ -69,13 +69,12 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
-          <Notification icon={infoIcon} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
-            <p slot="message">Your plant needs attention!</p>  
-          </Notification>
-
           <!-- Light button at the top -->
           <div class="top-section">
-            <LightLevel></LightLevel>
+            <Notification icon={infoIcon} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
+              <p slot="message">Your plant needs attention!</p>  
+            </Notification>
+            <LightLevel />
             <Link id ="lightData" to="/light-data">
               <button id="lightDataButton"></button>
             </Link>
@@ -159,6 +158,7 @@
 }
 
 .top-section {
+  position: relative;
   flex: 1; /* Each section takes an equal amount of space */
   display: flex;
   justify-content: center; /* Center the content horizontally */

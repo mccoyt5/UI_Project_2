@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import PlantIcon from '../components/PlantIcon.svelte'
+    import { Link } from 'svelte-routing';
     
     let plantData = {
       light: 70,
@@ -51,9 +52,21 @@
     </div>
     
     <p>Last updated: {plantData.lastUpdated.toLocaleString()}</p>
+    <button>
+      <Link to="/">Back to Main Page</Link>
+    </button>
   </div>
   
   <style>
+    button {
+      padding: 10px;
+      margin: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     .section {
       margin-bottom: 1rem;
     }
