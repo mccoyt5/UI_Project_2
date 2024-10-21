@@ -4,12 +4,21 @@
   import NutrientsLevel from './routes/NutrientsLevel.svelte';
   import WaterLevel from './routes/WaterLevel.svelte';
   import LightData from './routes/LightData.svelte';
+  import Notification from './components/Notification.svelte';
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
+  import info from './assets/info.svg';
+  import {lightData, nutrientData, waterData} from './data';
 
   let showMenu = false;
   let showContainer = false;
+  
+  // condition for light level
+  let badLightLevel = false
+  setTimeout(() => {
+    badLightLevel = true
+  }, 5000);
 
   function toggleMenu() {
     showMenu = !showMenu;
@@ -29,6 +38,7 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
+          <Notification icon={info} url="/light-level" hasNotification={badLightLevel}/>
 
           <!-- Light button at the top -->
           <div class="button-container top">
