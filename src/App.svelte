@@ -260,8 +260,8 @@
   #lightDataButton {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
-    top: 300px;
-    right:25px;
+    top: 55%;
+    right: 0%;
     width: 540px;
     height: 150px;
   }
