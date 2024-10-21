@@ -39,7 +39,7 @@
         <Route path="/">
           <h1>LEAF SENSE</h1>
           <Notification icon={info} url="/light-level" hasNotification={badLightLevel}>
-            <p slot="message">Test! LOREM IPSUM STUFF AHJASDBJHABWDHJAWD ASJHDB</p>  
+            <p slot="message">Test!</p>  
           </Notification>
 
           <!-- Light button at the top -->
