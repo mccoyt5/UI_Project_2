@@ -38,7 +38,9 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
-          <Notification icon={info} url="/light-level" hasNotification={badLightLevel}/>
+          <Notification icon={info} url="/light-level" hasNotification={badLightLevel}>
+            <p slot="message">Test! LOREM IPSUM STUFF AHJASDBJHABWDHJAWD ASJHDB</p>  
+          </Notification>
 
           <!-- Light button at the top -->
           <div class="button-container top">

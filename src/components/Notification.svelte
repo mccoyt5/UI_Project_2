@@ -1,4 +1,3 @@
-<!-- Notification.svelte -->
 <script>
   import { Link } from "svelte-routing";
   import { fly } from "svelte/transition";
@@ -11,7 +10,7 @@
 <Link to={url}>
   <div in:fly={{x: -25, duration: 1000}} class="notification-container">
         <img src={icon} class="notification-icon" alt="notification icon" />
-        <p>Plant needs attention!</p>
+        <slot class="notification-text" name="message">No notification message provided!</slot>
     </div>
   </Link>
 {/if}
@@ -20,19 +19,21 @@
   .notification-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     position: absolute;
     top: 3%;
     left: 1%;
     border: 2px solid black;
-    padding: 1px 10px 1px 1px;
+    padding: 0px 10px 0px 1px;
     background-color: #7c7c7c;
   }
 
-  .notification-container p {
+  .notification-container :global(p) {
     font-size: small;
     font-style: italic;
     color: black;
     text-decoration: none;
+    margin: 0;
   }
 
   .notification-icon {
