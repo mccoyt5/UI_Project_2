@@ -58,15 +58,7 @@
   </div>
   
   <style>
-    button {
-      padding: 10px;
-      margin: 5px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+
     .section {
       margin-bottom: 1rem;
     }
