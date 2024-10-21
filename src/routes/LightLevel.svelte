@@ -31,10 +31,16 @@
 
   function brighterRoom() {
     lightLevel += 100;
+    if (lightLevel > 10000) {
+      lightLevel = 10000;
+    }
   }
 
   function dimmerRoom() {
     lightLevel -= 100;
+    if (lightLevel < 0) {
+      lightLevel = 0;
+    }
   }
 
   function trackNewDay() {
