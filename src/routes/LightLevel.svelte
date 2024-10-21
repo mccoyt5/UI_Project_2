@@ -2,19 +2,18 @@
   import { Link } from 'svelte-routing';
   import { lightData } from '../data';
   import { lightLevel } from '../utils';
-  import { absoluteMin, absoluteMax } from '../data';
+  import { lightAbsoluteMin, lightAbsoluteMax, plantDesiredLight} from '../data';
 
-  let plantDesiredLight = 1000;
-  let minPlantLight = Math.round(plantDesiredLight * 0.9);
-  let maxPlantLight = Math.round(plantDesiredLight * 1.1);
+  let maxPlantLight = Math.round($plantDesiredLight * 1.1);
+  let minPlantLight = Math.round($plantDesiredLight * 0.9);
   let changeDesiredLight = false;
   let changeDesiredLightButtonLabel = "Change Desired Light Level";
 
-  $: if (plantDesiredLight < $absoluteMin) plantDesiredLight = $absoluteMin;
-  $: if (plantDesiredLight > $absoluteMax) plantDesiredLight = $absoluteMax;
-  $: if (typeof plantDesiredLight != "number") plantDesiredLight = $absoluteMin;
-  $: if ($lightLevel < $absoluteMin) $lightLevel = $absoluteMin;
-  $: if ($lightLevel > $absoluteMax) $lightLevel = $absoluteMax;
+  $: if ($plantDesiredLight < $lightAbsoluteMin) plantDesiredLight.set($lightAbsoluteMin);
+  $: if ($plantDesiredLight > $lightAbsoluteMax) plantDesiredLight.set($lightAbsoluteMax);
+  $: if (typeof $plantDesiredLight != "number") plantDesiredLight.set($lightAbsoluteMin);
+  $: if ($lightLevel < $lightAbsoluteMin) lightLevel.set($lightAbsoluteMin);
+  $: if ($lightLevel > $lightAbsoluteMax) lightLevel.set($lightAbsoluteMax);
 
   function updateDesiredLight() {
     changeDesiredLight = !changeDesiredLight;
@@ -23,8 +22,8 @@
     }
     else {
       changeDesiredLightButtonLabel = "Change Desired Light Level";
-      minPlantLight = Math.round(plantDesiredLight * 0.9);
-      maxPlantLight = Math.round(plantDesiredLight * 1.1);
+      minPlantLight = Math.round($plantDesiredLight * 0.9);
+      maxPlantLight = Math.round($plantDesiredLight * 1.1);
     }
   }
 </script>
@@ -36,10 +35,10 @@
 
     <div id="lightLevel">
       {#if changeDesiredLight == false}
-        <p>Desired light level: {plantDesiredLight} lux</p>
+        <p>Desired light level: {$plantDesiredLight} lux</p>
       {:else}
         <p>Desired light level:</p>
-        <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} />
+        <input type="number" min={$lightAbsoluteMin} max={$lightAbsoluteMax} bind:value={$plantDesiredLight} />
         <p> lux</p>
       {/if}
       <button id="update" on:click={updateDesiredLight}>
