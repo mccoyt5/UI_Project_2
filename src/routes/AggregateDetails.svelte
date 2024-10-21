@@ -42,7 +42,11 @@
       <h3>Water</h3>
       <progress value={plantData.water} max="100"></progress>
       {#if waterStatus === 'critical'}
-        <button on:click={() => {/* Water the plant */} }>Water Now</button>
+        <button
+          on:click={() => {
+            /* Water the plant */
+          }}>Water Now</button
+        >
       {/if}
     </div>
     
@@ -52,13 +56,21 @@
     </div>
     
     <p>Last updated: {plantData.lastUpdated.toLocaleString()}</p>
-    <button>
-      <Link to="/">Back to Main Page</Link>
-    </button>
+    <Link to="/">
+      <button> Back to Main Page </button>
+    </Link>
   </div>
   
   <style>
-
+    button {
+      padding: 10px;
+      margin: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     .section {
       margin-bottom: 1rem;
     }
