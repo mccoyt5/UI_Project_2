@@ -69,7 +69,7 @@
         <!-- Main Page Route -->
         <Route path="/">
           <h1>LEAF SENSE</h1>
-          <Notification icon={info} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
+          <Notification icon={infoIcon} url="/aggregate-details" backgroundColor="#d4ebf9" hasNotification={badLightLevel}>
             <p slot="message">Your plant needs attention!</p>  
           </Notification>
 
