@@ -38,9 +38,11 @@
       {#if changeDesiredLight == false}
         <p>Desired light level: {plantDesiredLight} lux</p>
       {:else}
-        <p>Desired light level:</p>
-        <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} />
-        <p> lux</p>
+        <label>Desired light level:
+          <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} />
+          lux
+        </label>
+        <p></p>
       {/if}
       <button id="update" on:click={updateDesiredLight}>
         {changeDesiredLightButtonLabel}
