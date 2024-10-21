@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: dark;
+  color: rgba(0, 0, 0, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -15,7 +15,7 @@
 
 a {
   font-weight: 500;
-  color: #f7f7f7;
+  color: #a8e898;
   text-decoration: inherit;
 }
 a:hover {
@@ -30,9 +30,15 @@ body {
   min-height: 100vh;
 }
 
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+  font-size: 1.8em;
+  font-style: italic;
+  position: relative;
+  top: 10%;
+
+
 }
 
 .card {
