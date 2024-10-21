@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from "svelte";
   import PlantIcon from "../components/PlantIcon.svelte";
   import { Link } from "svelte-routing";
