@@ -1,17 +1,20 @@
 <script>
   import { Link } from 'svelte-routing';
   import { lightData } from '../data';
+  import { lightLevel } from '../utils';
+  import { absoluteMin, absoluteMax } from '../data';
 
-  let lightLevel = 1000;
   let plantDesiredLight = 1000;
   let minPlantLight = Math.round(plantDesiredLight * 0.9);
   let maxPlantLight = Math.round(plantDesiredLight * 1.1);
   let changeDesiredLight = false;
   let changeDesiredLightButtonLabel = "Change Desired Light Level";
 
-  $: if (plantDesiredLight < 0) plantDesiredLight = 0;
-  $: if (plantDesiredLight > 10000) plantDesiredLight = 10000;
-  $: if (typeof plantDesiredLight != "number") plantDesiredLight = 0;
+  $: if (plantDesiredLight < $absoluteMin) plantDesiredLight = $absoluteMin;
+  $: if (plantDesiredLight > $absoluteMax) plantDesiredLight = $absoluteMax;
+  $: if (typeof plantDesiredLight != "number") plantDesiredLight = $absoluteMin;
+  $: if ($lightLevel < $absoluteMin) $lightLevel = $absoluteMin;
+  $: if ($lightLevel > $absoluteMax) $lightLevel = $absoluteMax;
 
   function updateDesiredLight() {
     changeDesiredLight = !changeDesiredLight;
@@ -24,53 +27,22 @@
       maxPlantLight = Math.round(plantDesiredLight * 1.1);
     }
   }
-
-  function randomLightLevel() {
-    lightLevel = Math.floor(Math.random() * (10000 - 1) + 1);
-  }
-
-  function brighterRoom() {
-    lightLevel += 100;
-    if (lightLevel > 10000) {
-      lightLevel = 10000;
-    }
-  }
-
-  function dimmerRoom() {
-    lightLevel -= 100;
-    if (lightLevel < 0) {
-      lightLevel = 0;
-    }
-  }
-
-  function trackNewDay() {
-    $lightData.push(lightLevel);
-    $lightData.shift();
-    $lightData = $lightData;
-  }
-
-  function info() {
-    alert("To change the light level goal for your plant, simply click the \"Change Desired Light Level\" button. The \"Desired light level\" display will become editable and you can change the value. Then to set the new value click the \"Set New Desired Light Level\" button.\n\nTo simulate moving to a different room with a random light level, simply click the \"Move plant to different room with random lighting\" button.\n\nTo simulate moving to a different room with a higher light level, simply click the \"Move the plant to a brighter room\" button.\n\nTo simulate moving to a different room with a lower light level, simply click the \"Move the plant to a dimmer room\" button.")
-  }
 </script>
 
 <div>
   <h1>Light level</h1>
-  <!-- Button to go back to Main Page -->
-  <button>
-    <Link to="/">Back to Main Page</Link>
-  </button>
-
   <div>
-    <p>Current light level: {lightLevel} lux</p>
+    <p>Current light level: {$lightLevel} lux</p>
 
     <div id="lightLevel">
       {#if changeDesiredLight == false}
         <p>Desired light level: {plantDesiredLight} lux</p>
       {:else}
-        <p>Desired light level:</p>
-        <input type="number" min="0" max="10000" bind:value={plantDesiredLight} />
-        <p> lux</p>
+        <label>Desired light level:
+          <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} />
+          lux
+        </label>
+        <p></p>
       {/if}
       <button id="update" on:click={updateDesiredLight}>
         {changeDesiredLightButtonLabel}
@@ -87,11 +59,11 @@
       <text x="215" y="30">{minPlantLight} - {maxPlantLight}</text>
       <text x="385" y="30">&gt {maxPlantLight}</text>
 
-      {#if lightLevel < minPlantLight}
+      {#if $lightLevel < minPlantLight}
         <circle cx="83.5" cy="50" r="10" fill="red" />
         <circle cx="250" cy="50" r="10" />
         <circle cx="417.5" cy="50" r="10" />
-      {:else if lightLevel > maxPlantLight}
+      {:else if $lightLevel > maxPlantLight}
         <circle cx="83.5" cy="50" r="10" />
         <circle cx="250" cy="50" r="10" />
         <circle cx="417.5" cy="50" r="10" fill="red" />
@@ -104,13 +76,7 @@
   </div>
 
   <div>
-    <button on:click={randomLightLevel}>
-      Move plant to different room with random lighting
-    </button>
-    <button on:click={brighterRoom}>Move the plant to a brighter room</button>
-    <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
-    <button on:click={trackNewDay}>Add a new entry for a day</button>
-    <button on:click={info}>Info</button>
+    
   </div>
 </div>
 
