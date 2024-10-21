@@ -1,44 +1,64 @@
 <script>
-    export let aggregateData;
-</script>
-
-<div class="notification-details">
-    <div class="icon-container">
-        <div class="triangle">
-            <span class="plant-icon"></span>
-        </div>
+    import { onMount } from 'svelte';
+    import PlantIcon from '../components/PlantIcon.svelte'
+    
+    let plantData = {
+      light: 70,
+      water: 30,
+      nutrients: 50,
+      lastUpdated: new Date()
+    };
+    
+    $: lightStatus = getStatus(plantData.light);
+    $: waterStatus = getStatus(plantData.water);
+    $: nutrientStatus = getStatus(plantData.nutrients);
+    
+    function getStatus(value) {
+      if (value < 30) return 'critical';
+      if (value < 60) return 'warning';
+      return 'optimal';
+    }
+    
+    onMount(() => {
+      // Fetch real data here
+    });
+  </script>
+  
+  <div class="aggregate-details">
+    <PlantIcon status={waterStatus} />
+    
+    <h2>Plant Health Overview</h2>
+    
+    <div class="section {lightStatus}">
+      <h3>Light</h3>
+      <progress value={plantData.light} max="100"></progress>
+      {#if lightStatus !== 'optimal'}
+        <span class="alert">⚠️</span>
+      {/if}
     </div>
-    <div class="info-container">
-        <p>{aggregateData.message}</p>
+    
+    <div class="section {waterStatus}">
+      <h3>Water</h3>
+      <progress value={plantData.water} max="100"></progress>
+      {#if waterStatus === 'critical'}
+        <button on:click={() => {/* Water the plant */} }>Water Now</button>
+      {/if}
     </div>
-</div>
-
-<style>
-    .notification-details {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    
+    <div class="section {nutrientStatus}">
+      <h3>Nutrients</h3>
+      <progress value={plantData.nutrients} max="100"></progress>
+    </div>
+    
+    <p>Last updated: {plantData.lastUpdated.toLocaleString()}</p>
+  </div>
+  
+  <style>
+    .section {
+      margin-bottom: 1rem;
     }
-    .icon-container {
-        margin-bottom: 1rem;
-    }
-    .triangle {
-        width: 0;
-        height: 0;
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
-        border-bottom: 100px solid #f0f0f0;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .plant-icon {
-        position: absolute;
-        top: 50%;
-        font-size: 2rem;
-    }
-    .info-container {
-        text-align: center;
-    }
-</style>
+    .optimal { color: green; }
+    .warning { color: orange; }
+    .critical { color: red; }
+    .alert { margin-left: 0.5rem; }
+  </style>
