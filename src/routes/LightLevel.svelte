@@ -1,18 +1,20 @@
 <script>
   import { Link } from 'svelte-routing';
   import { lightData } from '../data';
-  import { lightLevel } from '../data';
+  import { lightLevel } from '../utils';
+  import { absoluteMin, absoluteMax } from '../data';
 
-  //let lightLevel = 1000;
   let plantDesiredLight = 1000;
   let minPlantLight = Math.round(plantDesiredLight * 0.9);
   let maxPlantLight = Math.round(plantDesiredLight * 1.1);
   let changeDesiredLight = false;
   let changeDesiredLightButtonLabel = "Change Desired Light Level";
 
-  $: if (plantDesiredLight < 0) plantDesiredLight = 0;
-  $: if (plantDesiredLight > 10000) plantDesiredLight = 10000;
-  $: if (typeof plantDesiredLight != "number") plantDesiredLight = 0;
+  $: if (plantDesiredLight < $absoluteMin) plantDesiredLight = $absoluteMin;
+  $: if (plantDesiredLight > $absoluteMax) plantDesiredLight = $absoluteMax;
+  $: if (typeof plantDesiredLight != "number") plantDesiredLight = $absoluteMin;
+  $: if ($lightLevel < $absoluteMin) $lightLevel = $absoluteMin;
+  $: if ($lightLevel > $absoluteMax) $lightLevel = $absoluteMax;
 
   function updateDesiredLight() {
     changeDesiredLight = !changeDesiredLight;
@@ -23,24 +25,6 @@
       changeDesiredLightButtonLabel = "Change Desired Light Level";
       minPlantLight = Math.round(plantDesiredLight * 0.9);
       maxPlantLight = Math.round(plantDesiredLight * 1.1);
-    }
-  }
-
-  export function randomLightLevel() {
-    $lightLevel = Math.floor(Math.random() * (10000 - 1) + 1);
-  }
-
-  export function brighterRoom() {
-    $lightLevel += 100;
-    if ($lightLevel > 10000) {
-      $lightLevel = 10000;
-    }
-  }
-
-  export function dimmerRoom() {
-    $lightLevel -= 100;
-    if ($lightLevel < 0) {
-      $lightLevel = 0;
     }
   }
 </script>
@@ -55,7 +39,7 @@
         <p>Desired light level: {plantDesiredLight} lux</p>
       {:else}
         <p>Desired light level:</p>
-        <input type="number" min="0" max="10000" bind:value={plantDesiredLight} />
+        <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} />
         <p> lux</p>
       {/if}
       <button id="update" on:click={updateDesiredLight}>

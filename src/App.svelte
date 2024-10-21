@@ -9,12 +9,10 @@
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
   import { lightData } from './data'
-  import { lightLevel } from './data';
+  import { lightLevel } from './utils';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
-  import { randomLightLevel } from './routes/LightLevel.svelte';
-  import { brighterRoom } from './routes/LightLevel.svelte';
-  import { dimmerRoom } from './routes/LightLevel.svelte';
+  import { randomLightLevel, brighterRoom, dimmerRoom } from './utils';
 
   let showMenu = false;
   let showContainer = false;
