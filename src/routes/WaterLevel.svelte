@@ -35,13 +35,6 @@
 </script>
 
 <main>
-  <!-- Back Button to Main Page -->
-  <div class="back-button">
-    <button>
-      <Link to="/">Back to Main Page</Link>
-    </button>
-  </div>
-
   <!-- Water Level Bar -->
   <div class="container">
     <div class="water-bar-container">
@@ -130,7 +123,7 @@
   }
 
   .water-bar {
-    width: 100%;
+    width: 350px;
     height: 40px;
     background: #e0e0e0;
     position: relative;
