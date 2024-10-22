@@ -28,7 +28,7 @@ export const removeWater = () =>
 
 export const kLevel = writable(20000);
 
-export const naLevel = writable(4000);
+export const naLevel = writable(40);
 
 export const increaseK = () => 
 { 
