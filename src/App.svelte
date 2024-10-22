@@ -107,7 +107,7 @@
             <!-- Divider Line 1 -->
             <div class="divider top-divider"></div>
 
-            <!-- Water button at the bottom -->
+            <!-- Water button at the middle -->
             <div class="middle-section">
               <Notification
                 icon={dangerIcon}
@@ -125,7 +125,7 @@
             <!-- Divider Line 2 -->
             <div class="divider bottom-divider"></div>
 
-            <!-- Nutrients button in the middle -->
+            <!-- Nutrients button in the bottom -->
             <div class="bottom-section">
               <NutrientsLevel></NutrientsLevel>
               <Link id="nutrientsData" to="/nutrients-data">
@@ -146,22 +146,9 @@
           <Route path="aggregate-details" component={AggregateDetails} />
           <Route path="water-data" component={WaterData} />
         </Router>
-
-        <!-- Settings button at the top right -->
-        <!-- <div class="settings-menu">
-        <button on:click={toggleMenu} class="settings-btn">⚙️</button> -->
-        <!-- {#if showMenu}
-          <div class="dropdown-menu">
-            <Link to="/light-level" on:click={() => showMenu = false}>Light Level</Link>
-            <Link to="/nutrients-level" on:click={() => showMenu = false}>Nutrients Level</Link>
-            <Link to="/water-level" on:click={() => showMenu = false}>Water Level</Link>
-            <Link to="/" on:click={() => showMenu = false}>Main Page</Link>
-          </div>
-        {/if}
-      </div> -->
       </div>
     {/if}
-    <div id="right" style="margin-right">
+    <div id="scenarios" style="margin-right">
       <h2>Example scenarios</h2>
       <button on:click={randomLightLevel}>
         Move plant to different room with random lighting
@@ -258,41 +245,7 @@
     margin: 5px 0;
   }
 
-  .settings-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-
-  .settings-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 2.5em;
-  }
-
-  .dropdown-menu {
-    position: absolute;
-    top: 65px;
-    right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 10px;
-  }
-
-  .dropdown-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-  }
-
-  .dropdown-menu a:hover {
-    background-color: #f0f0f0;
-  }
-
-  #right {
+  #scenarios {
     float: right;
     min-width: 300px;
     width: 100%;

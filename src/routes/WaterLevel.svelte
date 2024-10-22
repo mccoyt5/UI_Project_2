@@ -1,33 +1,6 @@
 <script>
-  import { Link } from "svelte-routing";
-  import { onMount } from "svelte";
-  import { tweened } from "svelte/motion";
-  import { cubicInOut } from "svelte/easing";
-  import { Chart, registerables } from "chart.js";
   import { waterLevel } from "../utils";
   import { maxWaterLevel, neededWaterLevel } from "../data";
-
-  // Data for Water Usage Analysis Chart
-  const usageData = {
-    labels: ["6 AM", "9 AM", "12 PM", "3 PM", "6 PM", "9 PM"],
-    datasets: [
-      {
-        label: "Morning",
-        data: [20, 25, 30, 35, 40, 45],
-        backgroundColor: "#1E90FF",
-      },
-      {
-        label: "Afternoon",
-        data: [15, 20, 25, 30, 35, 40],
-        backgroundColor: "#00FA9A",
-      },
-      {
-        label: "Evening",
-        data: [10, 15, 20, 25, 30, 35],
-        backgroundColor: "#FFD700",
-      },
-    ],
-  };
 </script>
 
 <main>
@@ -154,36 +127,5 @@
     left: 70%;
     border-color: green;
     transform: translateX(-2px);
-  }
-
-  /* Chart Container */
-  .charts {
-    max-width: 800px;
-    margin: 2rem auto;
-  }
-
-  .chart {
-    position: relative;
-    height: 500px; /* Keeps the chart at the larger size */
-  }
-
-  /* Back Button Styles */
-  .back-button {
-    margin: 1rem;
-    display: inline-block;
-  }
-
-  button {
-    padding: 10px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #0056b3;
   }
 </style>

@@ -66,6 +66,5 @@
 
   .notification-icon {
     color: black;
-    /* width: 15rem; */
   }
 </style>

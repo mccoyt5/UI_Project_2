@@ -1,9 +1,4 @@
 <script>
-  import { Link } from "svelte-routing";
-  import { onMount } from "svelte";
-  import { tweened } from "svelte/motion";
-  import { cubicInOut } from "svelte/easing";
-  import { Chart, registerables } from "chart.js";
   import { kLevel, naLevel } from "../utils";
 
   const maxKLevel = 30000;
@@ -166,36 +161,5 @@
     left: 70%;
     border-color: green;
     transform: translateX(-2px);
-  }
-
-  /* Chart Container */
-  .charts {
-    max-width: 800px;
-    margin: 2rem auto;
-  }
-
-  .chart {
-    position: relative;
-    height: 500px; /* Keeps the chart at the larger size */
-  }
-
-  /* Back Button Styles */
-  .back-button {
-    margin: 1rem;
-    display: inline-block;
-  }
-
-  button {
-    padding: 10px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #0056b3;
   }
 </style>
