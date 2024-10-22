@@ -9,8 +9,8 @@
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
-  import { lightData } from './data'
-  import { lightLevel } from './utils';
+  import { lightData, waterData } from './data'
+  import { lightLevel, waterLevel } from './utils';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
   import { randomLightLevel, brighterRoom, dimmerRoom, addWater, removeWater } from './utils';
@@ -32,6 +32,9 @@
     $lightData.push($lightLevel);
     $lightData.shift();
     $lightData = $lightData;
+    $waterData.push($waterLevel);
+    $waterData.shift();
+    $waterData = $waterData;
   }
 
   function info() {
