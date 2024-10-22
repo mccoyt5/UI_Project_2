@@ -3,6 +3,7 @@
   import LightLevel from './routes/LightLevel.svelte';
   import NutrientsLevel from './routes/NutrientsLevel.svelte';
   import WaterLevel from './routes/WaterLevel.svelte';
+  import WaterData from './routes/WaterData.svelte';
   import LightData from './routes/LightData.svelte';
   import Notification from './components/Notification.svelte';
   import { fade } from 'svelte/transition';
@@ -69,8 +70,9 @@
 
           <!-- Water button at the bottom -->
           <div class="middle-section">
-            <Link to="/water-level">
-              <button>Go to Water Level Page</button>
+            <WaterLevel></WaterLevel>
+            <Link id="waterData" to="/water-data">
+              <button id="waterDataButton"></button>
             </Link>
           </div>
           <!-- Divider Line 2 -->
@@ -93,6 +95,7 @@
         <Route path="nutrients-level" component={NutrientsLevel} />
         <Route path="water-level" component={WaterLevel} />
         <Route path="light-data" component={LightData} />
+        <Route path="water-data" component={WaterData} />
         <Route path="aggregate-details" component={AggregateDetails} />
       </Router>
 
@@ -246,6 +249,15 @@
     background-color: rgba(0, 0, 0, 0);
     top: 55%;
     right: 0%;
+    width: 540px;
+    height: 150px;
+  }
+
+  #waterDataButton {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    top: 65%;
+    right: 4%;
     width: 540px;
     height: 150px;
   }
