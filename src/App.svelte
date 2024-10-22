@@ -266,7 +266,7 @@
     max-height: 886px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #a2a3a3;
+    background-color: #d8d8d8;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
