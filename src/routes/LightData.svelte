@@ -48,9 +48,11 @@
 <h2> Average light level over the past week: {averageLight} lux</h2>
 
 <!-- Button to go back to Main Page -->
-<button>
-  <Link to="/">Back to Main Page</Link>
-</button>
+<Link to="/">
+  <button>
+    Back to Main Page
+  </button>
+</Link>
 
 <style>
   canvas {

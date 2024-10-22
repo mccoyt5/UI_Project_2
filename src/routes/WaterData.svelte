@@ -60,13 +60,13 @@
     <div class="chart">
       <canvas bind:this={usageChartCanvas}></canvas>
     </div>
-    <!-- Button to go back to Main Page -->
-    <Link to="/">
-      <button>
-        Back to Main Page
-      </button>
-    </Link>
   </div>
+  <!-- Button to go back to Main Page -->
+  <Link to="/">
+    <button>
+      Back to Main Page
+    </button>
+  </Link>
 </main>
 
 <style>
@@ -181,19 +181,5 @@
   .back-button {
     margin: 1rem;
     display: inline-block;
-  }
-
-  button {
-    padding: 10px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #0056b3;
   }
 </style>
