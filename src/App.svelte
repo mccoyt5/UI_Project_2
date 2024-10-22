@@ -98,8 +98,8 @@
         <Route path="nutrients-level" component={NutrientsLevel} />
         <Route path="water-level" component={WaterLevel} />
         <Route path="light-data" component={LightData} />
-        <Route path="water-data" component={WaterData} />
         <Route path="aggregate-details" component={AggregateDetails} />
+        <Route path="water-data" component={WaterData} />
       </Router>
 
       <!-- Settings button at the top right -->
