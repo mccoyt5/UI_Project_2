@@ -1,6 +1,4 @@
 <script>
-  import { Link } from 'svelte-routing';
-  import { lightData } from '../data';
   import { lightLevel } from '../utils';
   import { lightAbsoluteMin, lightAbsoluteMax, plantDesiredLight } from '../data';
   import { tweened } from 'svelte/motion';
@@ -46,10 +44,7 @@
 
 <div>
   <h1>Light level</h1>
-
   <div>
-
-
     <div id="lightLevel">
       <button id="update" on:click={updateDesiredLight}>
         {changeDesiredLightButtonLabel}
@@ -59,9 +54,7 @@
       {:else}
         <p>Desired light level:  <input type="number" min={$lightAbsoluteMin} max={$lightAbsoluteMin} bind:value={$plantDesiredLight} /> lux</p>
       {/if}
-
     </div>
-
     <br />
 
     <!-- SVG Graphic -->
