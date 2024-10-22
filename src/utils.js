@@ -25,3 +25,27 @@ export const removeWater = () =>
 { 
     waterLevel.update(n => n - 1);
 };
+
+export const kLevel = writable(20000);
+
+export const naLevel = writable(4000);
+
+export const increaseK = () => 
+{ 
+    kLevel.update(n => n + 1000);
+};
+    
+export const increaseNa = () => 
+{ 
+    naLevel.update(n => n + 1);
+};
+
+export const decreaseK = () => 
+{ 
+    kLevel.update(n => n - 1000);
+};
+        
+export const decreaseNa = () => 
+{ 
+    naLevel.update(n => n - 1);
+};
