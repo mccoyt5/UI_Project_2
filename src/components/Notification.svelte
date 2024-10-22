@@ -57,7 +57,7 @@
 
   .notification-container :global(p) {
     font-size: medium;
-    font-style: italic;
+    font-weight: 600;
     color: black;
     text-decoration: none;
     margin: 0;
