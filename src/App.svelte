@@ -9,11 +9,12 @@
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
-  import { lightData, waterData } from './data'
-  import { lightLevel, waterLevel } from './utils';
+  import { lightData, waterData, kData, naData } from './data'
+  import { lightLevel, waterLevel, kLevel, naLevel } from './utils';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
-  import { randomLightLevel, brighterRoom, dimmerRoom, addWater, removeWater } from './utils';
+  import { randomLightLevel, brighterRoom, dimmerRoom, addWater, removeWater, increaseK, increaseNa, decreaseK, decreaseNa } from './utils';
+  import NutrientsData from './routes/NutrientsData.svelte';
 
   let showMenu = false;
   let showContainer = false;
@@ -35,6 +36,12 @@
     $waterData.push($waterLevel);
     $waterData.shift();
     $waterData = $waterData;
+    $kData.push($kLevel);
+    $kData.shift();
+    $kData = $kData;
+    $naData.push($naLevel);
+    $naData.shift();
+    $naData = $naData;
   }
 
   function info() {
@@ -84,8 +91,9 @@
           
           <!-- Nutrients button in the middle -->
           <div class="bottom-section">
-            <Link to="/nutrients-level">
-              <button>Go to Nutrients Level Page</button>
+            <NutrientsLevel></NutrientsLevel>
+            <Link id="nutrientsData" to="/nutrients-data">
+              <button id="nutrientsDataButton"></button>
             </Link>
           </div>
           
@@ -99,6 +107,7 @@
         <Route path="water-level" component={WaterLevel} />
         <Route path="light-data" component={LightData} />
         <Route path="water-data" component={WaterData} />
+        <Route path="nutrients-data" component={NutrientsData} />
         <Route path="aggregate-details" component={AggregateDetails} />
       </Router>
 
@@ -129,6 +138,12 @@
     <br/>
     <button on:click={addWater}>Add water</button>
     <button on:click={removeWater}>Remove water</button>
+    <br/>
+    <br/>
+    <button on:click={increaseK}>Increase K</button>
+    <button on:click={decreaseK}>Decrease K</button>
+    <button on:click={increaseNa}>Increase Na</button>
+    <button on:click={decreaseNa}>Decrease Na</button>
   </div>
 </body>
 </main>
@@ -267,5 +282,14 @@
     right: 4%;
     width: 540px;
     height: 150px;
+  }
+
+  #nutrientsDataButton {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    top: 75%;
+    right: 4%;
+    width: 540px;
+    height: 300px;
   }
 </style>
