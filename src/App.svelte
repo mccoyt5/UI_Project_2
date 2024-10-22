@@ -45,7 +45,7 @@
   }
 
   function info() {
-    alert("To change the light level goal for your plant, simply click the \"Change Desired Light Level\" button. The \"Desired light level\" display will become editable and you can change the value. Then to set the new value click the \"Set New Desired Light Level\" button.\n\nTo simulate moving to a different room with a random light level, simply click the \"Move plant to different room with random lighting\" button.\n\nTo simulate moving to a different room with a higher light level, simply click the \"Move the plant to a brighter room\" button.\n\nTo simulate moving to a different room with a lower light level, simply click the \"Move the plant to a dimmer room\" button.")
+    alert("To change the light level goal for your plant, simply click the \"Change Desired Light Level\" button. The \"Desired light level\" display will become editable and you can change the value. Then to set the new value click the \"Set New Desired Light Level\" button.\n\nTo simulate moving to a different room with a random light level, simply click the \"Move plant to different room with random lighting\" button.\n\nTo simulate moving to a different room with a higher light level, simply click the \"Move the plant to a brighter room\" button.\n\nTo simulate moving to a different room with a lower light level, simply click the \"Move the plant to a dimmer room\" button.\n\nTo add water to the pot, click the \"Add water\" button.\n\nTo decrease the amount of water in the pot, click the \"Remove water\" button.\n\nTo increase the amount of K in the soil, click the \"Increase K\" button.\n\nTo decrease the amount of K in the soil, click the \"Decrease K\" button.\n\nTo increase the amount of Na in the soil, click the \"Increase Na\" button.\n\nTo decrease the amount of Na in the soil, click the \"Decrease Na\" button.\n\nTo add the current statistics to the charts, click the \"Add a new entry for a day\" button.\n\nTo view the charts for a statistic, click on the diagram for the respective statistic.")
   }
 
   // Show the container on component mount
@@ -134,7 +134,6 @@
     <button on:click={brighterRoom}>Move the plant to a brighter room</button>
     <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
     <button on:click={trackNewDay}>Add a new entry for a day</button>
-    <button on:click={info}>Info</button>
     <br/>
     <br/>
     <button on:click={addWater}>Add water</button>
@@ -145,6 +144,12 @@
     <button on:click={decreaseK}>Decrease K</button>
     <button on:click={increaseNa}>Increase Na</button>
     <button on:click={decreaseNa}>Decrease Na</button>
+    <br/>
+    <br/>
+    <button on:click={trackNewDay}>Add a new entry for a day</button>
+    <br/>
+    <br/>
+    <button on:click={info}>Info</button>
   </div>
 </body>
 </main>
