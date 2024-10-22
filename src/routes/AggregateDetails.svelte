@@ -1,25 +1,30 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
   import { onMount } from "svelte";
   import PlantIcon from "../components/PlantIcon.svelte";
   import { Link } from "svelte-routing";
-  import { lightLevel } from "../utils";
-  import { plantDesiredLight } from "../data";
+  import { lightLevel, waterLevel } from "../utils";
+  import { maxWaterLevel, plantDesiredLight } from "../data";
 
   let lightPercentage = 50;
   lightLevel.subscribe((val) => {
-    lightPercentage = (val / $plantDesiredLight) * 100
-  })
+    lightPercentage = (val / $plantDesiredLight) * 100;
+  });
   plantDesiredLight.subscribe((val) => {
-    lightPercentage = ($lightLevel / val) * 100
-  })
+    lightPercentage = ($lightLevel / val) * 100;
+  });
 
-  let plantData; 
-  
+  let waterPercentage = 50;
+  waterLevel.subscribe((val) => {
+    waterPercentage = (val / $maxWaterLevel) * 100;
+  });
+
+  let plantData;
+
   $: plantData = {
     light: lightPercentage,
-    water: 30,
+    water: waterPercentage,
     nutrients: 50,
     lastUpdated: new Date(),
   };
@@ -43,14 +48,17 @@
   <PlantIcon status={waterStatus} />
   <h2>Plant Health Overview</h2>
 
-  <div class="section {lightStatus} light">
-    <h3>Light</h3>
-    <progress value={plantData.light} max="100"></progress>
-    {#if lightStatus !== "optimal"}
-      <span class="alert">⚠️</span>
-    {/if}
-  </div>
+  <Link id ="lightData" to="/light-data">
+    <div class="section {lightStatus} light">
+      <h3>Light</h3>
+      <progress value={plantData.light} max="100"></progress>
+      {#if lightStatus !== "optimal"}
+        <span class="alert">⚠️</span>
+      {/if}
+    </div>
+  </Link>
 
+  <Link to="/water-data">
   <div class="section {waterStatus} water">
     <h3>Water</h3>
     <progress value={plantData.water} max="100"></progress>
@@ -62,11 +70,14 @@
       >
     {/if}
   </div>
+</Link>
 
+  <Link to="/nutrients-level">
   <div class="section {nutrientStatus} nutrients">
     <h3>Nutrients</h3>
     <progress value={plantData.nutrients} max="100"></progress>
   </div>
+  </Link>
 </div>
 
 <div class="footer">
@@ -105,6 +116,7 @@
   }
 
   .section {
+    border-radius: 4%;
     padding: 1rem 0;
     margin-bottom: 2rem;
   }

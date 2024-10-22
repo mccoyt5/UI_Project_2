@@ -51,7 +51,7 @@
     top: 0;
     right: 0;
     border-radius: 0%;
-    font-size: smaller;
+    font-size: medium;
     padding: 0;
   }
 

@@ -13,3 +13,12 @@ export const lightData = writable([1000, 1100, 800, 750, 900, 1000, 1000]);
 export const lightAbsoluteMin = writable(0);
 export const lightAbsoluteMax = writable(10000);
 export const plantDesiredLight = writable(1000);
+
+/* =================================================================
+*
+*   WATER STUFF
+*
+* ==================================================================*/
+
+export const maxWaterLevel = writable(90); // Max water level in percentage
+export const neededWaterLevel = writable(70); // Needed water level in percentage

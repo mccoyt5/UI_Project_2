@@ -103,7 +103,7 @@
     <!-- Display Current and Desired Light Level Side by Side -->
     <div class="light-levels">
       <span><strong>Current light level:</strong> {$lightLevel} lux</span>
-      <span><strong>Desired light level:</strong> {plantDesiredLight} lux</span>
+      <span><strong>Desired light level:</strong> {$plantDesiredLight} lux</span>
     </div>
   </div>
 </div>
