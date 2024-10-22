@@ -19,8 +19,8 @@
   
   $: plantData = {
     light: lightPercentage,
-    water: 70,
-    nutrients: 80,
+    water: 30,
+    nutrients: 50,
     lastUpdated: new Date(),
   };
 
@@ -39,12 +39,11 @@
   });
 </script>
 
-<div class="aggregate-details">
+<div class="aggregate-details-container">
   <PlantIcon status={waterStatus} />
-
   <h2>Plant Health Overview</h2>
 
-  <div class="section {lightStatus}">
+  <div class="section {lightStatus} light">
     <h3>Light</h3>
     <progress value={plantData.light} max="100"></progress>
     {#if lightStatus !== "optimal"}
@@ -52,7 +51,7 @@
     {/if}
   </div>
 
-  <div class="section {waterStatus}">
+  <div class="section {waterStatus} water">
     <h3>Water</h3>
     <progress value={plantData.water} max="100"></progress>
     {#if waterStatus === "critical"}
@@ -64,11 +63,13 @@
     {/if}
   </div>
 
-  <div class="section {nutrientStatus}">
+  <div class="section {nutrientStatus} nutrients">
     <h3>Nutrients</h3>
     <progress value={plantData.nutrients} max="100"></progress>
   </div>
+</div>
 
+<div class="footer">
   <p>Last updated: {plantData.lastUpdated.toLocaleString()}</p>
   <Link to="/">
     <button> Back to Main Page </button>
@@ -85,9 +86,33 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  .section {
-    margin-bottom: 1rem;
+
+  .aggregate-details-container {
+    position: relative;
+    height: 100%;
   }
+
+  .light {
+    background-color: #f9e4d4;
+  }
+
+  .water {
+    background-color: #d4ebf9;
+  }
+
+  .nutrients {
+    background-color: #d4f9d6;
+  }
+
+  .section {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .section h3 {
+    margin: 0;
+  }
+
   .optimal {
     color: green;
   }
@@ -99,5 +124,11 @@
   }
   .alert {
     margin-left: 0.5rem;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
   }
 </style>
