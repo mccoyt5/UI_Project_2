@@ -34,10 +34,12 @@ body {
 h1 {
   font-size: 1.2em;
   font-style: italic;
-  margin-top: -20px; /* Adjusts the position */
+  margin-top: -05px; /* Adjusts the position */
+  margin-right: auto;
+  margin-left: auto;
   text-align: center; /* Centers the title */
-  border: 2px solid #9f9f9f; /* Adds a solid border around the title */
-  padding: 10px; /* Adds some space between the text and the border */
+  border: 5px solid #9f9f9f; /* Adds a solid border around the title */
+  padding: 5px; /* Adds some space between the text and the border */
   border-radius: 122px; /* Rounds the corners of the border */
 }
 

@@ -51,14 +51,15 @@
 
 
     <div id="lightLevel">
+      <button id="update" on:click={updateDesiredLight}>
+        {changeDesiredLightButtonLabel}
+      </button>
       {#if changeDesiredLight == false}
         <p>Desired light level: {$plantDesiredLight} lux</p>
       {:else}
         <p>Desired light level:  <input type="number" min={$lightAbsoluteMin} max={$lightAbsoluteMin} bind:value={$plantDesiredLight} /> lux</p>
       {/if}
-      <button id="update" on:click={updateDesiredLight}>
-        {changeDesiredLightButtonLabel}
-      </button>
+
     </div>
 
     <br />
@@ -102,7 +103,7 @@
 
     <!-- Display Current and Desired Light Level Side by Side -->
     <div class="light-levels">
-      <span><strong>Current light level:</strong> {$lightLevel} lux</span>
+      <span><strong>Current light level:</strong> {$lightLevel} lux | </span>
       <span><strong>Desired light level:</strong> {$plantDesiredLight} lux</span>
     </div>
   </div>
@@ -110,7 +111,7 @@
 
 <style>
   svg {
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   /* Flexbox to align current and desired light level side by side */
