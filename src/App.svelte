@@ -9,7 +9,15 @@
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
   import { expoIn, sineIn, sineInOut } from "svelte/easing";
-  import { lightData, maxWaterLevel, neededWaterLevel, plantDesiredLight, waterData, kData, naData } from "./data";
+  import {
+    lightData,
+    maxWaterLevel,
+    neededWaterLevel,
+    plantDesiredLight,
+    waterData,
+    kData,
+    naData,
+  } from "./data";
   import { lightLevel, waterLevel, kLevel, naLevel } from "./utils";
   import warningIcon from "./assets/warning.svg";
   import dangerIcon from "./assets/danger.svg";
@@ -32,8 +40,11 @@
 
   let needWater;
   let needLight;
-  $: needLight = $lightLevel < $plantDesiredLight*0.9  || $plantDesiredLight*1.1 < $lightLevel
-  $: needWater = $waterLevel < $neededWaterLevel  || $maxWaterLevel < $waterLevel
+  $: needLight =
+    $lightLevel < $plantDesiredLight * 0.9 ||
+    $plantDesiredLight * 1.1 < $lightLevel;
+  $: needWater =
+    $waterLevel < $neededWaterLevel || $maxWaterLevel < $waterLevel;
 
   function toggleMenu() {
     showMenu = !showMenu;
@@ -307,8 +318,8 @@
   #waterDataButton {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
-    top: 65%;
-    right: 4%;
+    top: 38%;
+    right: 1%;
     width: 540px;
     height: 150px;
   }
@@ -316,8 +327,8 @@
   #nutrientsDataButton {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
-    top: 89%;
-    right: 3.5%;
+    top: 44%;
+    right: -0.5%;
     width: 547px;
     height: 79px;
   }
