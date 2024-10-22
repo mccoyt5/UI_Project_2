@@ -36,6 +36,7 @@
 
 <main>
   <!-- Water Level Bar -->
+  <h1>Water level</h1>
   <div class="container">
     <div class="water-bar-container">
       <div class="water-bar">
