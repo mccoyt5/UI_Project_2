@@ -109,6 +109,7 @@
         <Route path="water-data" component={WaterData} />
         <Route path="nutrients-data" component={NutrientsData} />
         <Route path="aggregate-details" component={AggregateDetails} />
+        <Route path="water-data" component={WaterData} />
       </Router>
 
       <!-- Settings button at the top right -->
@@ -168,12 +169,12 @@
 
 .top-section {
   position: relative;
-  flex: 1; /* Each section takes an equal amount of space */
+  flex: 11; /* Each section takes an equal amount of space */
   display: flex;
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
   background-color: #f9e4d4; /* Example background color */
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   border-radius: 5px;
 
 
@@ -185,7 +186,7 @@
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
   background-color: #d4ebf9; /* Example background color */
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   border-radius: 5px;
 
 }
@@ -196,7 +197,7 @@
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
   background-color: #d4f9d6; /* Example background color */
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   border-radius: 5px;
   margin-bottom: 15; /* No margin for the last section */
 }
