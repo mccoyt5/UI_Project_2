@@ -61,9 +61,11 @@
       <canvas bind:this={usageChartCanvas}></canvas>
     </div>
     <!-- Button to go back to Main Page -->
-    <button>
-      <Link to="/">Back to Main Page</Link>
-    </button>
+    <Link to="/">
+      <button>
+        Back to Main Page
+      </button>
+    </Link>
   </div>
 </main>
 

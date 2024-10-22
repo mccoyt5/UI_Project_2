@@ -95,9 +95,11 @@
         <canvas bind:this={usageChartCanvasK}></canvas>
         <canvas bind:this={usageChartCanvasNa}></canvas>
         <!-- Button to go back to Main Page -->
-      <button>
-        <Link to="/">Back to Main Page</Link>
-      </button>
+        <Link to="/">
+          <button>
+            Back to Main Page
+          </button>
+        </Link>
       </div>
     </div>
   </main>
