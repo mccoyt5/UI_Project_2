@@ -4,87 +4,71 @@
   import { tweened } from 'svelte/motion';
   import { cubicInOut } from 'svelte/easing';
   import { Chart, registerables } from 'chart.js';
-  import { waterLevel } from '../utils';
+  import { waterData } from '../data';
 
-  // Water Level Bar Variables
-  const maxWaterLevel = 90; // Max water level in percentage
-  const neededWaterLevel = 70; // Needed water level in percentage
-  const actualWaterLevel = 60; // Actual water level in percentage
+  // Register Chart.js components
+  Chart.register(...registerables);
 
-  // Data for Water Usage Analysis Chart
-  const usageData = {
-    labels: ['6 AM', '9 AM', '12 PM', '3 PM', '6 PM', '9 PM'],
-    datasets: [
-      {
-        label: 'Morning',
-        data: [20, 25, 30, 35, 40, 45],
-        backgroundColor: '#1E90FF'
+  // Chart.js references
+  let usageChart;
+
+  // Canvas element binding
+  let usageChartCanvas;
+
+  onMount(() => {
+    initializeUsageChart();
+  });
+
+  let waterDataArray;
+  waterData.subscribe((value) => {
+    waterDataArray = value;
+  })
+
+  // Initialize Water Usage Analysis Chart
+  function initializeUsageChart() {
+    if (usageChartCanvas) {
+      const ctx = usageChartCanvas.getContext('2d');
+      if (ctx) {
+        usageChart = new Chart(ctx, {
+            type: "bar",
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Past 7 days of water levels"
+          },
+        }
       },
-      {
-        label: 'Afternoon',
-        data: [15, 20, 25, 30, 35, 40],
-        backgroundColor: '#00FA9A'
-      },
-      {
-        label: 'Evening',
-        data: [10, 15, 20, 25, 30, 35],
-        backgroundColor: '#FFD700'
+      data: {
+        labels: ["7 days ago", "6 days ago", "5 days ago", "4 days ago", "3 days ago", "2 days ago", "1 day ago"],
+        datasets: 
+        [{
+          label: "Water Usage (mL)",
+          data: waterDataArray
+        }]
       }
-    ]
-  };
+        });
+      }
+    }
+  }
 </script>
 
 <main>
-  <!-- Back Button to Main Page -->
-  <div class="back-button">
+  <!-- Charts Section -->
+  <div class="charts">
+    <!-- Water Usage Analysis Chart -->
+    <div class="chart">
+      <canvas bind:this={usageChartCanvas}></canvas>
+    </div>
+    <!-- Button to go back to Main Page -->
     <button>
       <Link to="/">Back to Main Page</Link>
     </button>
   </div>
-
-  <!-- Water Level Bar -->
-  <div class="container">
-    <div class="water-bar-container">
-      <div class="water-bar">
-        <div
-          class="fill"
-          style="width: {$waterLevel}%"
-        ></div>
-        <div
-          class="marker"
-          style="left: ${neededWaterLevel}%"
-        >
-          Needed
-        </div>
-        <div
-          class="marker"
-          style="left: ${maxWaterLevel}%"
-        >
-          Max
-        </div>
-        <div class="line max-line"></div>
-        <div class="line needed-line"></div>
-      </div>
-      <div class="label">
-        Actual Water Level: {$waterLevel}%
-      </div>
-    </div>
-    <!-- Legend -->
-    <div class="legend">
-      <div class="legend-item">
-        <div class="legend-color-box max-level-box"></div>
-        <div>Max Level</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color-box adequate-level-box"></div>
-        <div>Adequate Level</div>
-      </div>
-    </div>
-  </div>
 </main>
 
 <style>
-  /* Water Level Bar Styles */
+    /* Water Level Bar Styles */
   .container {
     width: 100%;
     max-width: 800px;

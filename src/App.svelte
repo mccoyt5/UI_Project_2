@@ -12,7 +12,7 @@
   import { lightLevel } from './utils';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
-  import { randomLightLevel, brighterRoom, dimmerRoom } from './utils';
+  import { randomLightLevel, brighterRoom, dimmerRoom, addWater, removeWater } from './utils';
 
   let showMenu = false;
   let showContainer = false;
@@ -118,6 +118,10 @@
     <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
     <button on:click={trackNewDay}>Add a new entry for a day</button>
     <button on:click={info}>Info</button>
+    <br/>
+    <br/>
+    <button on:click={addWater}>Add water</button>
+    <button on:click={removeWater}>Remove water</button>
   </div>
 </body>
 </main>
