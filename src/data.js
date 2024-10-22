@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
 export const nutrientData = writable([123, 456, 321, 654, 221, 542, 503]);
-export const waterData = writable([321, 123, 456, 654, 221, 333, 482]);
+export const waterData = writable([60, 85, 70, 45, 80, 60, 60]);
 
 /* =================================================================
 *

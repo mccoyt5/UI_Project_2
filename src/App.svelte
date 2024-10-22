@@ -9,11 +9,11 @@
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte'; 
   import { expoIn, sineIn, sineInOut } from 'svelte/easing';
-  import { lightData } from './data'
-  import { lightLevel } from './utils';
+  import { lightData, waterData } from './data'
+  import { lightLevel, waterLevel } from './utils';
   import infoIcon from './assets/info.svg';
   import AggregateDetails from './routes/AggregateDetails.svelte';
-  import { randomLightLevel, brighterRoom, dimmerRoom } from './utils';
+  import { randomLightLevel, brighterRoom, dimmerRoom, addWater, removeWater } from './utils';
 
   let showMenu = false;
   let showContainer = false;
@@ -32,6 +32,9 @@
     $lightData.push($lightLevel);
     $lightData.shift();
     $lightData = $lightData;
+    $waterData.push($waterLevel);
+    $waterData.shift();
+    $waterData = $waterData;
   }
 
   function info() {
@@ -43,6 +46,7 @@
     showContainer = true;
   });
 </script>
+
 
 
 <main>
@@ -121,6 +125,10 @@
     <button on:click={dimmerRoom}>Move the plant to a dimmer room</button>
     <button on:click={trackNewDay}>Add a new entry for a day</button>
     <button on:click={info}>Info</button>
+    <br/>
+    <br/>
+    <button on:click={addWater}>Add water</button>
+    <button on:click={removeWater}>Remove water</button>
   </div>
 </body>
 </main>

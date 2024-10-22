@@ -4,17 +4,12 @@
   import { tweened } from 'svelte/motion';
   import { cubicInOut } from 'svelte/easing';
   import { Chart, registerables } from 'chart.js';
+  import { waterLevel } from '../utils';
 
   // Water Level Bar Variables
   const maxWaterLevel = 90; // Max water level in percentage
   const neededWaterLevel = 70; // Needed water level in percentage
   const actualWaterLevel = 60; // Actual water level in percentage
-
-  // Animate Water Level Bar
-  let fillLevel = tweened(0, {
-    duration: 2000,
-    easing: cubicInOut
-  });
 
   // Data for Water Usage Analysis Chart
   const usageData = {
@@ -37,21 +32,17 @@
       }
     ]
   };
-
-  // Start the animation
-  onMount(() => {
-    fillLevel.set(actualWaterLevel);
-  });
 </script>
 
 <main>
   <!-- Water Level Bar -->
+  <h1>Water level</h1>
   <div class="container">
     <div class="water-bar-container">
       <div class="water-bar">
         <div
           class="fill"
-          style="width: {$fillLevel}%"
+          style="width: {$waterLevel}%"
         ></div>
         <div
           class="marker"
@@ -69,7 +60,7 @@
         <div class="line needed-line"></div>
       </div>
       <div class="label">
-        Actual Water Level: {$fillLevel}%
+        Actual Water Level: {$waterLevel}%
       </div>
     </div>
     <!-- Legend -->

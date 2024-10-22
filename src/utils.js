@@ -13,3 +13,15 @@ export const dimmerRoom = () =>
 { 
     lightLevel.update(n => n - 100);
 };
+
+export const waterLevel = writable(40);
+
+export const addWater = () => 
+{ 
+    waterLevel.update(n => n + 1);
+};
+
+export const removeWater = () => 
+{ 
+    waterLevel.update(n => n - 1);
+};

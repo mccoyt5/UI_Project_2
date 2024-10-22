@@ -4,7 +4,7 @@
   import { tweened } from 'svelte/motion';
   import { cubicInOut } from 'svelte/easing';
   import { Chart, registerables } from 'chart.js';
-    import { waterData } from '../data';
+  import { waterData } from '../data';
 
   // Register Chart.js components
   Chart.register(...registerables);
@@ -43,7 +43,7 @@
         labels: ["7 days ago", "6 days ago", "5 days ago", "4 days ago", "3 days ago", "2 days ago", "1 day ago"],
         datasets: 
         [{
-          label: "Water Usage (mL)",
+          label: "Water Usage (%)",
           data: waterDataArray
         }]
       }
