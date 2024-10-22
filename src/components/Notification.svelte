@@ -32,8 +32,8 @@
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 1%;
-    left: 0%;
+    top: -0.6%;
+    left: -0.4%;
     border: 2px solid black;
     border-radius: 0%;
     padding: 0px 10px 0px 1px;
@@ -51,13 +51,13 @@
     top: 0;
     right: 0;
     border-radius: 0%;
-    font-size: smaller;
+    font-size: x-small;
     padding: 0;
   }
 
   .notification-container :global(p) {
-    font-size: small;
-    font-style: italic;
+    font-size: medium;
+    font-weight: 600;
     color: black;
     text-decoration: none;
     margin: 0;

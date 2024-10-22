@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
 
-
 export const lightLevel = writable(1000);
 
 export const randomLightLevel = () => lightLevel.set(Math.floor(Math.random() * (10000 - 1) + 1));

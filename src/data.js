@@ -1,9 +1,26 @@
 import { writable } from "svelte/store";
 
-export const lightData = writable([1000, 1100, 800, 750, 900, 1000, 1000]);
+export const nutrientData = writable([123, 456, 321, 654, 221, 542, 503]);
 export const kData = writable([20000, 18000, 18500, 20000, 21000, 20000, 21000]);
 export const naData = writable([40, 30, 25, 40, 45, 20, 30]);
 export const waterData = writable([60, 85, 70, 45, 80, 60, 60]);
 
-export const absoluteMin = writable(0);
-export const absoluteMax = writable(10000);
+/* =================================================================
+*
+*   LIGHT STUFF
+*
+* ==================================================================*/
+export const lightData = writable([1000, 1100, 800, 750, 900, 1000, 1000]);
+
+export const lightAbsoluteMin = writable(0);
+export const lightAbsoluteMax = writable(10000);
+export const plantDesiredLight = writable(1000);
+
+/* =================================================================
+*
+*   WATER STUFF
+*
+* ==================================================================*/
+
+export const maxWaterLevel = writable(90); // Max water level in percentage
+export const neededWaterLevel = writable(70); // Needed water level in percentage

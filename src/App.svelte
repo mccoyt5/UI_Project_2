@@ -9,9 +9,18 @@
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
   import { expoIn, sineIn, sineInOut } from "svelte/easing";
-  import { lightData, waterData, kData, naData } from "./data";
+  import {
+    lightData,
+    maxWaterLevel,
+    neededWaterLevel,
+    plantDesiredLight,
+    waterData,
+    kData,
+    naData,
+  } from "./data";
   import { lightLevel, waterLevel, kLevel, naLevel } from "./utils";
-  import infoIcon from "./assets/info.svg";
+  import warningIcon from "./assets/warning.svg";
+  import dangerIcon from "./assets/danger.svg";
   import AggregateDetails from "./routes/AggregateDetails.svelte";
   import {
     randomLightLevel,
@@ -29,11 +38,13 @@
   let showMenu = false;
   let showContainer = false;
 
-  // condition for light level
-  let badLightLevel = false;
-  setTimeout(() => {
-    badLightLevel = true;
-  }, 5000);
+  let needWater;
+  let needLight;
+  $: needLight =
+    $lightLevel < $plantDesiredLight * 0.9 ||
+    $plantDesiredLight * 1.1 < $lightLevel;
+  $: needWater =
+    $waterLevel < $neededWaterLevel || $maxWaterLevel < $waterLevel;
 
   function toggleMenu() {
     showMenu = !showMenu;
@@ -80,12 +91,12 @@
             <!-- Light button at the top -->
             <div class="top-section">
               <Notification
-                icon={infoIcon}
-                url="/aggregate-details"
-                backgroundColor="#d4ebf9"
-                hasNotification={badLightLevel}
+                icon={warningIcon}
+                url="/light-data"
+                backgroundColor="#f0f46f"
+                hasNotification={needLight}
               >
-                <p slot="message">Your plant needs attention!</p>
+                <p slot="message">Check your plant's lighting!</p>
               </Notification>
               <LightLevel />
               <Link id="lightData" to="/light-data">
@@ -98,6 +109,14 @@
 
             <!-- Water button at the bottom -->
             <div class="middle-section">
+              <Notification
+                icon={dangerIcon}
+                url="/water-data"
+                backgroundColor="#f66"
+                hasNotification={needWater}
+              >
+                <p slot="message">Check your plant's water!</p>
+              </Notification>
               <WaterLevel></WaterLevel>
               <Link id="waterData" to="/water-data">
                 <button id="waterDataButton"></button>
@@ -198,6 +217,7 @@
   }
 
   .middle-section {
+    position: relative;
     flex: 1; /* Each section takes an equal amount of space */
     display: flex;
     justify-content: center; /* Center the content horizontally */
@@ -208,6 +228,7 @@
   }
 
   .bottom-section {
+    position: relative;
     flex: 1; /* Each section takes an equal amount of space */
     display: flex;
     justify-content: center; /* Center the content horizontally */
@@ -297,8 +318,8 @@
   #waterDataButton {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
-    top: 65%;
-    right: 4%;
+    top: 38%;
+    right: 1%;
     width: 540px;
     height: 150px;
   }
@@ -306,8 +327,8 @@
   #nutrientsDataButton {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
-    top: 89%;
-    right: 3.5%;
+    top: 44%;
+    right: -0.5%;
     width: 547px;
     height: 79px;
   }

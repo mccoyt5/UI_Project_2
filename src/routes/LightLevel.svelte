@@ -2,17 +2,16 @@
   import { Link } from 'svelte-routing';
   import { lightData } from '../data';
   import { lightLevel } from '../utils';
-  import { absoluteMin, absoluteMax } from '../data';
+  import { lightAbsoluteMin, lightAbsoluteMax, plantDesiredLight } from '../data';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing'; 
   
-  let plantDesiredLight = 1000;
   let changeDesiredLight = false;
   let changeDesiredLightButtonLabel = "Change Desired Light Level";
 
   // Reactive min and max values based on the desired plant light
-  $: minPlantLight = Math.round(plantDesiredLight * 0.9);
-  $: maxPlantLight = Math.round(plantDesiredLight * 1.1);
+  $: minPlantLight = Math.round($plantDesiredLight * 0.9);
+  $: maxPlantLight = Math.round($plantDesiredLight * 1.1);
   // Create a tweened store to animate the light level's X position
   const lightXPosition = tweened(0, { duration: 800, easing: cubicOut });
 
@@ -39,8 +38,8 @@
     }
     else {
       changeDesiredLightButtonLabel = "Change Desired Light Level";
-      minPlantLight = Math.round(plantDesiredLight * 0.9);
-      maxPlantLight = Math.round(plantDesiredLight * 1.1);
+      minPlantLight = Math.round($plantDesiredLight * 0.9);
+      maxPlantLight = Math.round($plantDesiredLight * 1.1);
     }
   }
 </script>
@@ -56,9 +55,9 @@
         {changeDesiredLightButtonLabel}
       </button>
       {#if changeDesiredLight == false}
-        <p>Desired light level: {plantDesiredLight} lux</p>
+        <p>Desired light level: {$plantDesiredLight} lux</p>
       {:else}
-        <p>Desired light level:  <input type="number" min={$absoluteMin} max={$absoluteMax} bind:value={plantDesiredLight} /> lux</p>
+        <p>Desired light level:  <input type="number" min={$lightAbsoluteMin} max={$lightAbsoluteMin} bind:value={$plantDesiredLight} /> lux</p>
       {/if}
 
     </div>
@@ -105,7 +104,7 @@
     <!-- Display Current and Desired Light Level Side by Side -->
     <div class="light-levels">
       <span><strong>Current light level:</strong> {$lightLevel} lux | </span>
-      <span><strong>Desired light level:</strong> {plantDesiredLight} lux</span>
+      <span><strong>Desired light level:</strong> {$plantDesiredLight} lux</span>
     </div>
   </div>
 </div>

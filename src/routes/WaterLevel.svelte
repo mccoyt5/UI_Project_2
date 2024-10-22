@@ -1,36 +1,32 @@
 <script>
-  import { Link } from 'svelte-routing';
-  import { onMount } from 'svelte';
-  import { tweened } from 'svelte/motion';
-  import { cubicInOut } from 'svelte/easing';
-  import { Chart, registerables } from 'chart.js';
-  import { waterLevel } from '../utils';
-
-  // Water Level Bar Variables
-  const maxWaterLevel = 90; // Max water level in percentage
-  const neededWaterLevel = 70; // Needed water level in percentage
-  const actualWaterLevel = 60; // Actual water level in percentage
+  import { Link } from "svelte-routing";
+  import { onMount } from "svelte";
+  import { tweened } from "svelte/motion";
+  import { cubicInOut } from "svelte/easing";
+  import { Chart, registerables } from "chart.js";
+  import { waterLevel } from "../utils";
+  import { maxWaterLevel, neededWaterLevel } from "../data";
 
   // Data for Water Usage Analysis Chart
   const usageData = {
-    labels: ['6 AM', '9 AM', '12 PM', '3 PM', '6 PM', '9 PM'],
+    labels: ["6 AM", "9 AM", "12 PM", "3 PM", "6 PM", "9 PM"],
     datasets: [
       {
-        label: 'Morning',
+        label: "Morning",
         data: [20, 25, 30, 35, 40, 45],
-        backgroundColor: '#1E90FF'
+        backgroundColor: "#1E90FF",
       },
       {
-        label: 'Afternoon',
+        label: "Afternoon",
         data: [15, 20, 25, 30, 35, 40],
-        backgroundColor: '#00FA9A'
+        backgroundColor: "#00FA9A",
       },
       {
-        label: 'Evening',
+        label: "Evening",
         data: [10, 15, 20, 25, 30, 35],
-        backgroundColor: '#FFD700'
-      }
-    ]
+        backgroundColor: "#FFD700",
+      },
+    ],
   };
 </script>
 
@@ -40,22 +36,9 @@
   <div class="container">
     <div class="water-bar-container">
       <div class="water-bar">
-        <div
-          class="fill"
-          style="width: {$waterLevel}%"
-        ></div>
-        <div
-          class="marker"
-          style="left: ${neededWaterLevel}%"
-        >
-          Needed
-        </div>
-        <div
-          class="marker"
-          style="left: ${maxWaterLevel}%"
-        >
-          Max
-        </div>
+        <div class="fill" style="width: {$waterLevel}%"></div>
+        <div class="marker" style="left: ${$neededWaterLevel}%">Needed</div>
+        <div class="marker" style="left: ${$maxWaterLevel}%">Max</div>
         <div class="line max-line"></div>
         <div class="line needed-line"></div>
       </div>
