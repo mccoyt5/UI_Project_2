@@ -84,7 +84,6 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 1rem;
-    border: 1px solid #ccc;
     border-radius: 8px;
     position: relative;
     display: flex;
